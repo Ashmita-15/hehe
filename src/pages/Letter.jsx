@@ -23,7 +23,6 @@ export default function Letter() {
     <div style={styles.page} className="letter-page">
       <style>{mobileStyles}</style>
 
-      {/* Rope sound */}
       <audio ref={audioRef} src="/rope.mp3" />
 
       {/* 🪵 Rod */}
@@ -31,15 +30,12 @@ export default function Letter() {
         <div style={styles.knob} />
         <div style={styles.knob} />
 
-        {/* 🪢 Rope (attached, no arrowhead) */}
-        <div style={styles.ropeAnchor} onClick={toggleScroll}>
+        {/* 🪢 Rope */}
+        <div style={styles.ropeAnchor} className="letter-rope-anchor" onClick={toggleScroll}>
           <motion.div
             style={styles.rope}
             className="letter-rope"
-            animate={{
-              scaleY: open ? 1.05 : 1,
-              rotate: open ? 1.2 : 0
-            }}
+            animate={{ scaleY: open ? 1.05 : 1 }}
             transition={{ type: "spring", stiffness: 160, damping: 14 }}
           />
         </div>
@@ -49,7 +45,7 @@ export default function Letter() {
       <motion.div
         style={styles.scrollContainer}
         className="letter-scroll-container"
-        animate={{ height: open ? "460px" : "90px" }}
+        animate={{ height: open ? "min(70vh, 460px)" : "90px" }}
         transition={{ duration: 1, ease: "easeInOut" }}
       >
         <div style={styles.scroll}>
@@ -59,28 +55,25 @@ export default function Letter() {
             <h2>Dear Ro 💖</h2>
 
             <p>
-              I have written a lot of handwritten letters/notes for you, this is a little different.This is the one that will stay with us forever and ever!
+              I have written a lot of handwritten letters/notes for you,
+              this is a little different. This is the one that will stay
+              with us forever and ever!
             </p>
             <p>
-              Thank you for being my best friend,partner in food,travel,love and life.Stay the same my boyfie,hehe. I love you!💗
+              Thank you for being my best friend, partner in food, travel,
+              love and life. Stay the same my boyfie, hehe. I love you! 💗
             </p>
-            <p>
-              This journey is sweeter because you’re in it 🤍
-            </p>
+            <p>This journey is sweeter because you’re in it 🤍</p>
 
             <p style={{ marginTop: "2rem" }}>
               Only yours,<br />Ash!
             </p>
           </div>
 
-          {/* Wax seal */}
-          <div style={styles.waxSeal} className="letter-wax">
-            ❤️
-          </div>
+          <div style={styles.waxSeal} className="letter-wax">❤️</div>
         </div>
       </motion.div>
 
-      {/* NEXT */}
       {hasOpened && (
         <motion.div
           style={styles.next}
@@ -99,7 +92,7 @@ export default function Letter() {
   );
 }
 
-/* ================= STYLES ================= */
+/* ================= BASE STYLES ================= */
 
 const styles = {
   page: {
@@ -108,13 +101,15 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    paddingTop: "70px",
-    fontFamily: "Merriweather, serif"
+    paddingTop: "48px",
+    fontFamily: "Merriweather, serif",
+    overflowX: "hidden"
   },
 
   rod: {
     position: "relative",
     width: "460px",
+    maxWidth: "92vw",
     height: "18px",
     background: "#6b3e26",
     borderRadius: "10px",
@@ -134,12 +129,11 @@ const styles = {
 
   ropeAnchor: {
     position: "absolute",
-    right: "70px",
+    right: "14%",
     top: "100%",
     display: "flex",
-    alignItems: "center",
-    cursor: "pointer",
-    zIndex: 10
+    justifyContent: "center",
+    cursor: "pointer"
   },
 
   rope: {
@@ -153,9 +147,9 @@ const styles = {
 
   scrollContainer: {
     width: "460px",
+    maxWidth: "92vw",
     overflow: "hidden",
-    marginTop: "70px",
-    zIndex: 1
+    marginTop: "56px"
   },
 
   scroll: {
@@ -172,16 +166,16 @@ const styles = {
   },
 
   content: {
-    padding: "30px",
+    padding: "28px",
     color: "#3b2a1a",
-    fontSize: "1.1rem",
-    lineHeight: "1.8"
+    fontSize: "1.05rem",
+    lineHeight: "1.75"
   },
 
   waxSeal: {
     position: "absolute",
     bottom: "20px",
-    right: "30px",
+    right: "24px",
     width: "46px",
     height: "46px",
     background: "#b22222",
@@ -190,13 +184,12 @@ const styles = {
     alignItems: "center",
     justifyContent: "center",
     fontSize: "1.4rem",
-    color: "#fff",
-    boxShadow: "0 6px 12px rgba(0,0,0,0.3)"
+    color: "#fff"
   },
 
   next: {
-    marginTop: "22px",
-    fontSize: "1.2rem",
+    marginTop: "20px",
+    fontSize: "1.15rem",
     color: "#b22222",
     cursor: "pointer",
     textDecoration: "underline",
@@ -204,8 +197,8 @@ const styles = {
   },
 
   hint: {
-    marginTop: "18px",
-    fontSize: "1rem",
+    marginTop: "14px",
+    fontSize: "0.95rem",
     opacity: 0.7
   }
 };
@@ -213,18 +206,10 @@ const styles = {
 /* ================= MOBILE FIX ================= */
 
 const mobileStyles = `
-@media (max-width: 600px) {
-  .letter-rod {
-    width: 90vw;
-  }
-
-  .letter-scroll-container {
-    width: 90vw;
-  }
-
+@media (max-width: 420px) {
   .letter-content {
+    font-size: 0.98rem;
     padding: 22px;
-    font-size: 1rem;
   }
 
   .letter-rope {
@@ -232,8 +217,8 @@ const mobileStyles = `
   }
 
   .letter-wax {
-    width: 38px;
-    height: 38px;
+    width: 36px;
+    height: 36px;
     font-size: 1.1rem;
   }
 
@@ -242,4 +227,3 @@ const mobileStyles = `
   }
 }
 `;
-
