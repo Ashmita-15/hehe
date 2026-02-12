@@ -1,0 +1,37 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Merriweather", serif;
+  background-color: #fff;
+}
+
+/* Optional: make text softer & aesthetic */
+h1, h2, h3 {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+p {
+  font-weight: 400;
+  line-height: 1.8;
+}
+
+/* Buttons slightly modern */
+button {
+  font-family: "Merriweather", serif;
+  font-weight: 400;
+}
+
+/* Loader */
+.loader {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: pink;
+  font-size: 2rem;
+}
