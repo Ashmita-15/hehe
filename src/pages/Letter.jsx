@@ -52,7 +52,7 @@ export default function Letter() {
           <div style={styles.tornTop} />
 
           <div style={styles.content} className="letter-content">
-            <h2>Dear Ro 💖</h2>
+            <h2>Dear Ro!</h2>
 
             <p>
               I have written a lot of handwritten letters/notes for you,
